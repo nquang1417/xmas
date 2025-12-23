@@ -390,3 +390,93 @@ p {
   opacity: 0.9;
   filter: grayscale(0.1);
 }
+
+/* ===== Responsive: mobile / smartphone tweaks ===== */
+@media (max-width: 480px) {
+  :root {
+    /* slightly smaller base for phones */
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 12px;
+    height: 100vh;
+    justify-content: center;
+  }
+
+  .tree {
+    font-size: 120px;
+  }
+
+  h1 {
+    font-size: clamp(24px, 8vw, 36px);
+    margin-top: 12px;
+  }
+
+  p {
+    font-size: 15px;
+    margin-top: 8px;
+  }
+
+  .gift-box {
+    width: 200px;
+    max-width: 80vw;
+  }
+
+  .wish-wrapper #wish-title {
+    width: 90%;
+    text-align: center;
+  }
+
+  .santa-frame {
+    --santa-width: 320px;
+  }
+
+  .santa-frame.small  { --santa-width: 140px; }
+  .santa-frame.large  { --santa-width: 420px; }
+
+  /* make mouse spark smaller on touch devices */
+  .mouse-spark {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* reduce visual noise for small screens */
+  .tree::after {
+    filter: blur(12px);
+    opacity: 0.45;
+  }
+}
+
+@media (max-width: 360px) {
+  :root { font-size: 13px; }
+
+  .tree {
+    font-size: 90px;
+  }
+
+  h1 {
+    font-size: clamp(20px, 9vw, 28px);
+  }
+
+  .gift-box {
+    width: 170px;
+    max-width: 78vw;
+  }
+
+  .santa-frame {
+    --santa-width: 260px;
+  }
+
+  .glow-text.fs-24 { font-size: 18px; }
+
+  .firework { width: 8px; height: 8px; }
+  .mouse-spark { width: 8px; height: 8px; }
+}
+
+/* Touch-friendly hint: make interactive elements easier to tap */
+@media (hover: none) {
+  .gift-box {
+    touch-action: manipulation;
+  }
+}

@@ -1,7 +1,7 @@
 /* ===== Snow ===== */
 const snowLayer = document.getElementById("snow-layer");
-const wishTitle = document.getElementById("wish-title");
-const wishText = document.getElementById("wish-text");
+// const wishTitle = document.getElementById("wish-title");
+// const wishText = document.getElementById("wish-text");
 // wish-text = div/h1 chứa lời chúc
 
 function createSnow() {
@@ -23,36 +23,25 @@ function createSnow() {
 function checkCollision(snow) {
     const interval = setInterval(() => {
         const snowRect = snow.getBoundingClientRect();
-        const titleRect = wishTitle.getBoundingClientRect();
-        const textRect = wishText.getBoundingClientRect();
+    const threshold = 15; // px from bottom
+    const hitBottom = snowRect.bottom >= (window.innerHeight - threshold);
 
-        const hitTitle =
-            opened &&
-            snowRect.bottom > titleRect.top &&
-            snowRect.top < titleRect.bottom &&
-            snowRect.left < titleRect.right &&
-            snowRect.right > titleRect.left;
+    if (hitBottom) {
+      // place sparkle slightly above the bottom for visibility
+      createSparkle(
+        snowRect.left + snowRect.width / 2,
+        Math.min(window.innerHeight - 6, snowRect.bottom)
+      );
+      snow.remove();
+      clearInterval(interval);
+      return;
+    }
 
-        const hitText =
-            opened &&
-            snowRect.bottom > textRect.top &&
-            snowRect.top < textRect.bottom &&
-            snowRect.left < textRect.right &&
-            snowRect.right > textRect.left;
-
-        if (hitTitle || hitText) {
-            createSparkle(
-                snowRect.left + snowRect.width / 2,
-                snowRect.top + snowRect.height / 2
-            );
-            snow.remove();
-            clearInterval(interval);
-        }
-
-        if (snowRect.top > window.innerHeight) {
-            snow.remove();
-            clearInterval(interval);
-        }
+    // fallback: if the snow has fully passed the viewport, clean up
+    if (snowRect.top > window.innerHeight) {
+      snow.remove();
+      clearInterval(interval);
+    }
     }, 60);
 }
 
