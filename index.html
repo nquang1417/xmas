@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Merry Christmas 🎄</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="bg-lights"></div>
+    <div id="snow-layer"></div>
+
+    <div id="fireworks"></div>
+
+    <div id="hint">
+      <img class="gift-box" id="giftBox" src="./assets/gift.png" alt="Gift" />
+    </div>
+
+    <div class="container hidden" id="content">
+      <!-- <div class="tree" id="tree">🎄</div> -->
+      <div class="santa-box">
+        <img id="santa" class="santa-frame" alt="Santa">
+      </div>
+      <div class="wish-wrapper">
+        <h1 id="wish-title" class="glow-text">Merry Christmas</h1>
+        <p class="glow-text fs-24" id="wish-text">
+          Chúc em một mùa Giáng Sinh nhẹ nhàng và dễ thương như chính em. ✨
+        </p>
+      </div>
+    </div>
+    <audio id="bgMusic" loop>
+      <source src="./assets/xmas.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
